@@ -19,3 +19,12 @@ Install-ChocolateyPackage -PackageName "$packageName" `
                           -ChecksumType "$checksumType" `
                           -Checksum64 "$checksum64" `
                           -ChecksumType64 "$checksumType64"
+if (Get-ProcessorBits 64) {
+  Install-ChocolateyPackage -PackageName "$packageName" `
+                            -FileType "$installerType" `
+                            -Url "$url" `
+                            -SilentArgs "$silentArgs" `
+                            -ValidExitCodes $validExitCodes `
+                            -Checksum "$checksum" `
+                            -ChecksumType "$checksumType"
+}
